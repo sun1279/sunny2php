@@ -61,7 +61,6 @@ $header='';
 $x=0;
 $len=false;
 $off=0;
-
 while(!feof($p)){
 	if($x==0){
 		$header.=fread($p,1024);
