@@ -301,7 +301,7 @@ function gipcountry(){
      if (function_exists("curl_init")) {
 	return 	'<th class="text-gray">支持</th>';
 	} else {
-		$ch = curl_init();
+		
 	return '<th class="text-dot">不支持，请启用Curl</th>';
 	} 
  }
@@ -310,7 +310,7 @@ function gipcountry(){
      if (get_cfg_var('allow_url_fopen')) {
 	return 	'<th class="text-gray">支持</th>';
 	} else {
-		$ch = curl_init();
+		
 	return '<th class="text-dot">不支持，请联系服务商或自行启用</th>';
 	} 
  }
