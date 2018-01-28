@@ -3,7 +3,35 @@
 @ignore_user_abort(0);
 @set_time_limit(0);
 include_once('./YouTubeDownloader.php');
-include("./lib.php");
+
+function strencode($string,$key='09KxDsIIe|+]8Fo{YP<l+3!y#>a$;^PzFpsxS9&d;!l;~M>2?N7G}`@?UJ@{FDI') {
+    $key = sha1($key);
+    $strLen = strlen($string);
+    $keyLen = strlen($key);
+    for ($i = 0; $i < $strLen; $i++) {
+        $ordStr = ord(substr($string,$i,1));
+        if (@$j == $keyLen) { $j = 0; }
+        $ordKey = ord(substr($key,$j,1));
+        @$j++;
+    @$hash .= strrev(base_convert(dechex($ordStr + $ordKey),16,36));
+    }
+    return 'Urls://'.$hash;
+}
+function strdecode($string,$key='09KxDsIIe|+]8Fo{YP<l+3!y#>a$;^PzFpsxS9&d;!l;~M>2?N7G}`@?UJ@{FDI') {
+    $string= ltrim($string, 'Urls://');
+    $key = sha1($key);
+    $strLen = strlen($string);
+    $keyLen = strlen($key);
+    for ($i = 0; $i < $strLen; $i+=2) {
+        $ordStr = hexdec(base_convert(strrev(substr($string,$i,2)),36,16));
+        if (@$j == $keyLen) { @$j = 0; }
+        $ordKey = ord(substr($key,@$j,1));
+        @$j++;
+        @$hash .= chr($ordStr - $ordKey);
+    }
+    return $hash;
+}
+
 $yt=new YouTubeDownloader();
 $u="https://www.youtube.com/watch?v=".$_GET['vv'];
 $links=$yt->getDownloadLinks($u);
