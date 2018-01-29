@@ -3,7 +3,7 @@
  * Youtube Proxy 
  * Simple Youtube PHP Proxy Server
  * @author ZXQ
- * @version V4.0
+ * @version V1.2
  * @description 核心操作函数集合
  */
 
@@ -430,7 +430,7 @@ function shareit($id,$title='免翻墙Youtube镜像'){
  <div class='form-group'><div class='d-inline-block h6 pt-3 col-12'>
     分享代码：
  </div>
-    <textarea style='resize:none;height: auto' class='form-control d-inline align-middle col-12 icoys icontext' id='inputs' type='text' rows='5' placeholder='Default input'><iframe height=498 width=510 src=&quot;".ROOT_PART."embed/?v=".$id.";&quot; frameborder=0 &quot;allowfullscreen&quot;></iframe></textarea>
+    <textarea style='resize:none;height: auto' class='form-control d-inline align-middle col-12 icoys icontext' id='inputs' type='text' rows='5' placeholder='Default input'><iframe height=498 width=510 src=&quot;".ROOT_PART."embed/?v=".$id."&quot; frameborder=0 &quot;allowfullscreen&quot;></iframe></textarea>
     
     <button type='submit' class='btn btn-primary align-middle col-12 mt-2' onclick='copytext1()'>复制</button></div>";
     
