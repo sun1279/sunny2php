@@ -1,3 +1,12 @@
+
+开发者API:https://ytcdn.bid/
+不翻墙下载youtube：
+
+1080p/4K 版本：
+
+http://down.admin5.com/php/139702.html
+
+
 ps：若部分视频播放不出来，多刷新几次，一般一两分钟之后即可正常播放！！！
 在heroku上部署you2php: https://github.com/You2php/you2php-heroku
 
