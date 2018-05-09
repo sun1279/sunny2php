@@ -69,14 +69,13 @@ function videoCategories($apikey,$regionCode='HK'){
       file_put_contents($apicache.".ts","REQUEST_TIME: " . $_SERVER['REQUEST_TIME']);
    }
    $ret = json_decode($json,true);
+   $items = $ret['items'];
    if (strtolower($regionCode) == 'tw') {
-      $items = $ret['items'];
-      array_filter($items, function($item){
-         return array_search($item['id'], ['33','42']) === FALSE;
+      return array_filter($items, function($v){
+         return array_search($v['id'], ['33','42']) === FALSE;
       });
-      $ret['items'] = $items;
    }
-   return $ret;
+   return $items;
 }
 
 

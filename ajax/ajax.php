@@ -163,7 +163,7 @@ ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
         <ul class="list-group pt-3">
         <li class="list-group-item font-weight-bold"></i>YOUTUBE 精选</li>
         ';
-        foreach($vica['items'] as $v){
+        foreach($vica as $v){
         echo '<li class="list-group-item"><a href="./content.php?cont=category&sortid='.$v['id'].'" class="text-dark">'.$v['snippet']['title'].'</a></li>';    
         }
         echo '</ul>';
