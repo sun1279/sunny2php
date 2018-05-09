@@ -72,7 +72,7 @@ function videoCategories($apikey,$regionCode='HK'){
    $items = $ret['items'];
    if (strtolower($regionCode) == 'tw') {
       return array_filter($items, function($v){
-         return array_search($v['id'], ['33','42']) === FALSE;
+         return array_search($v['id'], ['18','33','41','42']) === FALSE;
       });
    }
    return $items;
@@ -100,7 +100,7 @@ function categorieslist($id){
     '30' => '电影',
     '31' => '动漫/动画',
     '32' => '动作/冒险',
-    //'33' => '经典',
+    '33' => '经典',
     '34' => '喜剧',
     '35' => '纪录片',
     '36' => '剧情片',
@@ -109,7 +109,7 @@ function categorieslist($id){
     '39' => '恐怖片',
     '40' => '科幻/幻想',
     '41' => '惊悚片',
-    //'42' => '短片',
+    '42' => '短片',
     '43' => '节目',
     '44' => '预告片'
        );
