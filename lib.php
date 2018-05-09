@@ -60,8 +60,23 @@ function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
 
 //获取视频类别内容
 function videoCategories($apikey,$regionCode='HK'){
-   $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
-   return json_decode(get_data($apilink),true);
+   $apicache = '/tmp/ytb_videoCategories_'.$regionCode;
+   $json = file_get_contents($apicache);
+   if (empty($json)) {
+       $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
+       $json = get_data($apilink);
+      file_put_contents($apicache,$json);
+      file_put_contents($apicache.".ts","REQUEST_TIME: " . $_SERVER['REQUEST_TIME']);
+   }
+   $ret = json_decode($json,true);
+   if (strtolower($regionCode) == 'tw') {
+      $items = $ret['items'];
+      array_filter($items, function($item){
+         return array_search($item['id'], ['33','42']) === FALSE;
+      });
+      $ret['items'] = $items;
+   }
+   return $ret;
 }
 
 
@@ -86,7 +101,7 @@ function categorieslist($id){
     '30' => '电影',
     '31' => '动漫/动画',
     '32' => '动作/冒险',
-    '33' => '经典',
+    //'33' => '经典',
     '34' => '喜剧',
     '35' => '纪录片',
     '36' => '剧情片',
@@ -95,7 +110,7 @@ function categorieslist($id){
     '39' => '恐怖片',
     '40' => '科幻/幻想',
     '41' => '惊悚片',
-    '42' => '短片',
+    //'42' => '短片',
     '43' => '节目',
     '44' => '预告片'
        );
