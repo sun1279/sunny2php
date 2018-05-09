@@ -60,8 +60,22 @@ function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
 
 //获取视频类别内容
 function videoCategories($apikey,$regionCode='HK'){
-   $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
-   return json_decode(get_data($apilink),true);
+   $apicache = '/tmp/ytb_videoCategories_'.$regionCode;
+   $json = file_get_contents($apicache);
+   if (empty($json)) {
+       $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
+       $json = get_data($apilink);
+      file_put_contents($apicache,$json);
+      file_put_contents($apicache.".ts","REQUEST_TIME: " . $_SERVER['REQUEST_TIME']);
+   }
+   $ret = json_decode($json,true);
+   $items = $ret['items'];
+   if (strtolower($regionCode) == 'tw') {
+      return array_filter($items, function($v){
+         return array_search($v['id'], ['18','33','41','42']) === FALSE;
+      });
+   }
+   return $items;
 }
 
 
