@@ -72,7 +72,7 @@ function videoCategories($apikey,$regionCode='HK'){
    $items = $ret['items'];
    if (strtolower($regionCode) == 'tw') {
       return array_filter($items, function($v){
-         return array_search($v['id'], ['18','33','41','42']) === FALSE;
+         return array_search($v['id'], ['18','33','37','38','41','42']) === FALSE;
       });
    }
    return $items;
