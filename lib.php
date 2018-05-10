@@ -59,7 +59,7 @@ function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
 }
 
 //获取视频类别内容
-function videoCategories($apikey,$regionCode='HK'){
+function videoCategories($apikey=APIKEY,$regionCode=GJ_CODE){
    $apicache = '/tmp/ytb_videoCategories_'.$regionCode;
    $json = file_get_contents($apicache);
    if (empty($json)) {
@@ -78,47 +78,20 @@ function videoCategories($apikey,$regionCode='HK'){
    return $items;
 }
 
-
 function categorieslist($id){
-   $data=array(
-    '1' => '电影和动画',
-    '2' => '汽车',
-    '10' => '音乐',
-    '15' => '宠物和动物',
-    '17' => '体育',
-    '18' => '短片',
-    '19' => '旅游和活动',
-    '20' => '游戏',
-    '21' => '视频博客',
-    '22' => '人物和博客',
-    '23' => '喜剧',
-    '24' => '娱乐',
-    '25' => '新闻和政治',
-    '26' => 'DIY 和生活百科',
-    '27' => '教育',
-    '28' => '科学和技术',
-    '30' => '电影',
-    '31' => '动漫/动画',
-    '32' => '动作/冒险',
-    '33' => '经典',
-    '34' => '喜剧',
-    '35' => '纪录片',
-    '36' => '剧情片',
-    '37' => '家庭片',
-    '38' => '外国',
-    '39' => '恐怖片',
-    '40' => '科幻/幻想',
-    '41' => '惊悚片',
-    '42' => '短片',
-    '43' => '节目',
-    '44' => '预告片'
-       );
-     if($id=='all'){
-     return $data;    
-     }else{
-      return $data[$id];   
-     }
+    $categories = videoCategories();
+    $data = array();
+    foreach ($categories as $k => $v) {
+        $data[$v['id']] = $v['snippet']['title'];
+    }
+
+    if($id=='all'){
+        return $data;
+    }else{
+        return $data[$id];
+    }
 }
+
 //获取视频类别内容
 function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode='VN'){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&&regionCode='.$regionCode.'&hl=zh-ZH&maxResults=48&videoCategoryId='.$id.'&key='.$apikey.'&order='.$order.'&pageToken='.$pageToken;
