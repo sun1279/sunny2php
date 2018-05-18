@@ -53,7 +53,7 @@ function get_related_video($vid,$apikey){
 
 
 //获取用户频道视频
-function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
+function get_channel_video($cid,$pageToken='',$apikey,$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&maxResults=50&type=video&regionCode='.$regionCode.'&hl=zh-CN&channelId='.$cid.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
@@ -93,14 +93,14 @@ function categorieslist($id){
 }
 
 //获取视频类别内容
-function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode='VN'){
+function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&&regionCode='.$regionCode.'&hl=zh-ZH&maxResults=48&videoCategoryId='.$id.'&key='.$apikey.'&order='.$order.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
 
 
 //获取搜索数据
-function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode='VN'){
+function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&order='.$order.'&type='.$type.'&q='.$query.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
