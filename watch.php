@@ -83,6 +83,9 @@ if (in_array($videodata['items']['0']['id'] ,$histmp)){
                 <span class="pr-1">
                     <a href="./content.php?cont=video&v=<?php echo $videodata['items']['0']['id'] ?>" target="_blank" class="fsize2"><i class="fa fa-arrow-down pr-1"></i>下载</a>
                 </span>
+                <span class="pr-1">
+                    <a style="color:red;" href="./4k.php?https://www.youtube.com/embed/<?php echo $videodata['items']['0']['id'] ?>" target="_blank" class="fsize2"><i class="fa fa-share-square-o pr-1"></i>4K播放</a>
+                </span>
                 </span>
              </div>
                 
