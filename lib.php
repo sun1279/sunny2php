@@ -72,7 +72,7 @@ function videoCategories($apikey=APIKEY,$regionCode=GJ_CODE){
    $items = $ret['items'];
    if (strtolower($regionCode) == 'tw') {
       return array_filter($items, function($v){
-         return array_search($v['id'], ['18','21','31','32','33','35','36','37','38','39','41','42']) === FALSE;
+         return array_search($v['id'], ['18','21','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44']) === FALSE;
       });
    }
    return $items;
