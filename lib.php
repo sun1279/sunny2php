@@ -28,7 +28,7 @@ require_once(dirname(__FILE__).'/YouTubeDownloader.php');
    return $f;  
 }
 //获取类别热门视频
-function get_trending($apikey,$max,$pageToken='',$regionCode='vn'){
+function get_trending($apikey,$max,$pageToken='',$regionCode=GJ_CODE){
     $apilink='https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&chart=mostPopular&regionCode='.$regionCode.'&maxResults='.$max.'&key='.$apikey.'&pageToken='.$pageToken;
      return json_decode(get_data($apilink),true);
 }
