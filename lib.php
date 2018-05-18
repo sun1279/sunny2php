@@ -59,52 +59,39 @@ function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
 }
 
 //获取视频类别内容
-function videoCategories($apikey,$regionCode='HK'){
-   $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
-   return json_decode(get_data($apilink),true);
+function videoCategories($apikey=APIKEY,$regionCode=GJ_CODE){
+   $apicache = '/tmp/ytb_videoCategories_'.$regionCode;
+   $json = file_get_contents($apicache);
+   if (empty($json)) {
+       $apilink='https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='.$regionCode.'&hl=zh-CN&key='.$apikey;
+       $json = get_data($apilink);
+      file_put_contents($apicache,$json);
+      file_put_contents($apicache.".ts","REQUEST_TIME: " . $_SERVER['REQUEST_TIME']);
+   }
+   $ret = json_decode($json,true);
+   $items = $ret['items'];
+   if (strtolower($regionCode) == 'tw') {
+      return array_filter($items, function($v){
+         return array_search($v['id'], ['18','33','37','38','41','42']) === FALSE;
+      });
+   }
+   return $items;
 }
-
 
 function categorieslist($id){
-   $data=array(
-    '1' => '电影和动画',
-    '2' => '汽车',
-    '10' => '音乐',
-    '15' => '宠物和动物',
-    '17' => '体育',
-    '18' => '短片',
-    '19' => '旅游和活动',
-    '20' => '游戏',
-    '21' => '视频博客',
-    '22' => '人物和博客',
-    '23' => '喜剧',
-    '24' => '娱乐',
-    '25' => '新闻和政治',
-    '26' => 'DIY 和生活百科',
-    '27' => '教育',
-    '28' => '科学和技术',
-    '30' => '电影',
-    '31' => '动漫/动画',
-    '32' => '动作/冒险',
-    '33' => '经典',
-    '34' => '喜剧',
-    '35' => '纪录片',
-    '36' => '剧情片',
-    '37' => '家庭片',
-    '38' => '外国',
-    '39' => '恐怖片',
-    '40' => '科幻/幻想',
-    '41' => '惊悚片',
-    '42' => '短片',
-    '43' => '节目',
-    '44' => '预告片'
-       );
-     if($id=='all'){
-     return $data;    
-     }else{
-      return $data[$id];   
-     }
+    $categories = videoCategories();
+    $data = array();
+    foreach ($categories as $k => $v) {
+        $data[$v['id']] = $v['snippet']['title'];
+    }
+
+    if($id=='all'){
+        return $data;
+    }else{
+        return $data[$id];
+    }
 }
+
 //获取视频类别内容
 function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode='VN'){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&&regionCode='.$regionCode.'&hl=zh-ZH&maxResults=48&videoCategoryId='.$id.'&key='.$apikey.'&order='.$order.'&pageToken='.$pageToken;
@@ -201,7 +188,7 @@ return $data = QueryList::Query(get_data($channel),$rules)->data;
 
 //采集抓取随机推荐内容
 function random_recommend(){
-   $dat=get_data('https://www.youtube.com/?gl=TW&hl=zh-CN'); 
+   $dat=get_data('https://www.youtube.com/?gl='.constant("GJ_CODE").'&hl=zh-CN'); 
    $rules = array(
     't' => array('#feed .individual-feed .section-list li .item-section li .feed-item-container .feed-item-dismissable .shelf-title-table .shelf-title-row h2 .branded-page-module-title-text','text'),
     'html' => array('#feed .individual-feed .section-list li .item-section li .feed-item-container .feed-item-dismissable .compact-shelf .yt-viewport .yt-uix-shelfslider-list','html'),
