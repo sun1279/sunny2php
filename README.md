@@ -1,10 +1,11 @@
+低调使用，拒绝广泛传播，切勿在中国大陆主机商提供的海外主机上搭建，推荐狗爹几十元一年的虚拟主机，速度快完美运行（亲测）
 
 开发者API:https://ytcdn.bid/
 不翻墙下载youtube：
-
+如果您需要看1080p或者4k或者直播请使用这个版本（安装方法看压缩包内的说明）
 1080p/4K 版本：
 
-http://down.admin5.com/php/139702.html
+https://raw.githubusercontent.com/You2php/you2php/master/%E6%94%AF%E6%8C%811080P-4k-%E7%9B%B4%E6%92%AD%E7%89%88%E6%9C%AC.zip
 
 
 ps：若部分视频播放不出来，多刷新几次，一般一两分钟之后即可正常播放！！！
