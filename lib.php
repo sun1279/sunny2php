@@ -28,7 +28,7 @@ require_once(dirname(__FILE__).'/YouTubeDownloader.php');
    return $f;  
 }
 //获取类别热门视频
-function get_trending($apikey,$max,$pageToken='',$regionCode='vn'){
+function get_trending($apikey,$max,$pageToken='',$regionCode=GJ_CODE){
     $apilink='https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&chart=mostPopular&regionCode='.$regionCode.'&maxResults='.$max.'&key='.$apikey.'&pageToken='.$pageToken;
      return json_decode(get_data($apilink),true);
 }
@@ -53,7 +53,7 @@ function get_related_video($vid,$apikey){
 
 
 //获取用户频道视频
-function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
+function get_channel_video($cid,$pageToken='',$apikey,$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&maxResults=50&type=video&regionCode='.$regionCode.'&hl=zh-CN&channelId='.$cid.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
@@ -72,7 +72,7 @@ function videoCategories($apikey=APIKEY,$regionCode=GJ_CODE){
    $items = $ret['items'];
    if (strtolower($regionCode) == 'tw') {
       return array_filter($items, function($v){
-         return array_search($v['id'], ['18','33','37','38','41','42']) === FALSE;
+         return array_search($v['id'], ['18','21','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44']) === FALSE;
       });
    }
    return $items;
@@ -93,14 +93,14 @@ function categorieslist($id){
 }
 
 //获取视频类别内容
-function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode='VN'){
+function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&&regionCode='.$regionCode.'&hl=zh-ZH&maxResults=48&videoCategoryId='.$id.'&key='.$apikey.'&order='.$order.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
 
 
 //获取搜索数据
-function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode='VN'){
+function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode=GJ_CODE){
    $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&order='.$order.'&type='.$type.'&q='.$query.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
@@ -396,8 +396,8 @@ function strdecode($string,$key='09KxDsIIe|+]8Fo{YP<l+3!y#>a$;^PzFpsxS9&d;!l;~M>
 
 //分享功能
 function shareit($id,$title='免翻墙Youtube镜像'){
-    $pic=ROOT_PART.'/thumbnail.php?vid='.$id;
-    $url=ROOT_PART.'watch-'.$id.'.html';
+    $pic=ROOT_PART.'thumbnail.php%3Fvid%3D'.$id;
+    $url=ROOT_PART.'watch.php%3Fv%3D'.$id;
     $title=str_replace('&','||',$title);
     $title=str_replace('"',' ',$title);
      $title=str_replace("'",' ',$title);
