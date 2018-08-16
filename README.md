@@ -6,7 +6,7 @@
 具体教程：
 https://github.com/pigmanidea/you2php-000webhost
 
-
+如果需要切换国家功能，请使用 https://github.com/hahadaba/YOU2PHP-GL-SELECTOR
 
 如果您需要看1080p或者4k或者直播请使用这个版本（安装方法看压缩包内的说明）
 1080p/4K 版本：
