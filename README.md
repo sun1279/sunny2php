@@ -1,3 +1,21 @@
+# You2PHP
+关于使用you2php网站搭建之后很快被墙的解决办法：
+
+1.启用SSL加密传输。
+
+2.启用http验证
+   Nginx主机参考https://www.howtoing.com/setup-nginx-basic-http-authentication (从此页面搜索 ：密码保护Nginx虚拟主机)
+   apache主机参考 http://blog.51cto.com/wushank/1211202
+   
+  3.编辑footer.php文件，去除程序版权（Powered by YOU2PHP），经过多次验证，证实了Gfw会通过检索源代码中的关键字Powered by YOU2PHP判断关键字来屏蔽某些站点。
+  
+  4.不要广泛传播，自己使用，
+  
+  5.国家代码不要填HK与tw，这些地区的热门内容会很不友好，容易被GFW。
+  
+  做到这几点，被墙的几率基本低于10%。
+
+
 低调使用，拒绝广泛传播，个人使用建议装在子目录，防止被搜索引擎爬虫嗅探到，切勿在中国大陆主机商提供的海外主机上搭建，不可绑定已备案域名，推荐狗爹几十元一年的虚拟主机，速度快完美运行（亲测）
 
 开发者API（不翻墙下载youtube）:https://ytcdn.bid/ 第三方提供
