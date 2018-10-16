@@ -1,5 +1,10 @@
-# You2PHP
-关于使用you2php网站搭建之后很快被墙的解决办法：
+#部分视频无法播放临时解决方法
+部分视频播放时提示 The media could not be loaded, either beca use the server or network failed or because the format is not supported.
+由于youtube算法升级，之前解析抓取youtube下载链接的方法失效。导致部分视频无法播放。
+
+解决方法参考https://github.com/You2php/you2php/issues/218#issuecomment-430182643
+
+#关于使用you2php网站搭建之后很快被墙的解决办法：
 
 1.启用SSL加密传输。
 
