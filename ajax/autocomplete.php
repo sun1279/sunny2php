@@ -1,11 +1,13 @@
 <?php
+require_once "../lang.conf.php";
+
 if(is_array($_GET)&&count($_GET)>0&&isset($_GET["q"])){
     $q=$_SERVER["QUERY_STRING"];
     }else{
     exit();
     }
 
-$url='https://suggestqueries.google.com/complete/search?hl=zh-CN&ds=yt&client=youtube&hjson=t&cp=1&'.$q;
+$url='https://suggestqueries.google.com/complete/search?hl='.$lang['YT_LANG'].'&ds=yt&client=youtube&hjson=t&cp=1&'.$q;
 if (!function_exists("curl_init")) {
 		$f = file_get_contents($url);
 	} else {

@@ -1,8 +1,14 @@
+<?php
+  require_once "../lang.conf.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>检查更新</title>
+        <?php
+          echo '<title>'.$lang['UPGRADE_TITLE'].'</title>';
+        ?>
     </head>
     <body>
         <?php
@@ -18,15 +24,15 @@
         curl_close($ch);
         $up=json_decode($f,true);
         if ( (int)$up['time'] > (int)$Posttime ) {
-            
-            echo '本程序已经有最新版本，请升级！</br>';
-           echo '当前版本：v'.$version.'</br>';
-           echo '最新版本：v'.$up['version'].'</br>';
-           echo '请从本地址下载最新版：<a href="'.$up['links'].'" target="_blank">'.$up['links'].'</a></br>';
-           echo '更新内容：'.$up['des'];
+
+            echo $lang['UPGRADE_M1'].'</br>';
+           echo $lang['UPGRADE_M2'].$version.'</br>';
+           echo $lang['UPGRADE_M3'].$up['version'].'</br>';
+           echo $lang['UPGRADE_M4'].'<a href="'.$up['links'].'" target="_blank">'.$up['links'].'</a></br>';
+           echo $lang['UPGRADE_M5'].$up['des'];
         } else{
-          echo '本程序已经是最新版，无需升级！'; 
+          echo $lang['UPGRADE_OK']; 
         }
-        ?>    
+        ?>
 </body>
 </html>
