@@ -1,7 +1,4 @@
-# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
-# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
-# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
-# （迫于压力，本项目停止维护，请尽快fork代码。2019年1月1日之后删除项目）
+
 #部分视频无法播放临时解决方法
 部分视频播放时提示 The media could not be loaded, either beca use the server or network failed or because the format is not supported.
 由于youtube算法升级，之前解析抓取youtube下载链接的方法失效。导致部分视频无法播放。
